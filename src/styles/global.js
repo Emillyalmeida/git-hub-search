@@ -11,20 +11,21 @@ export default createGlobalStyle`
     list-style: none;
 }
 :root{
-    --color-background: #000;
-    --color-text:#fff;
+    --color-background: #252422;
+    --color-text:#fffcf2;
 }
 html{
     overflow: unset;
 }
-body, input, button, textarea{
+body{
     font-family: 'Hind', sans-serif;
     font-size: 1rem;
-    color: var(--color-text)
+    background-color: var(--color-background);
+    
 }
 h1, h2, h3, h4, h5, h6{
-    font-family: 'Baloo Chettan 2', cursive;
     font-weight: 700;
+    color: var(--color-text)
 }
 button{
     cursor: pointer;
