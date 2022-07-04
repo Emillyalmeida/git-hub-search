@@ -3,6 +3,8 @@ import { useEffect } from "react";
 
 import Container from "./components/container";
 import Header from "./components/header";
+import Load from "./components/loading";
+import NotFound from "./components/notFound";
 import Perfil from "./components/perfil";
 import Repos from "./components/repositories";
 import Seach from "./components/search";
@@ -25,12 +27,18 @@ const App = () => {
         <Header />
         <Seach />
         {loading ? (
-          <h2>Loading</h2>
+          <Load />
         ) : (
-          <Flex flexDir="column">
-            <Perfil User={User} />
-            <DivBtn />
-            <Repos />
+          <Flex flexDir="column" alignItems="center">
+            {User.name ? (
+              <>
+                <Perfil User={User} />
+                <DivBtn />
+                <Repos />
+              </>
+            ) : (
+              <NotFound />
+            )}
           </Flex>
         )}
       </Container>

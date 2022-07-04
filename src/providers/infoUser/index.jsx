@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
   const [repos, setRepos] = useState([]);
   const [starred, setStarred] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const LoadingUser = useCallback(() => {
     setLoading(true);
@@ -36,6 +36,8 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        setUser({});
+        setLoading(false);
       });
   }, [name]);
 
@@ -51,7 +53,7 @@ export const UserProvider = ({ children }) => {
         console.log(err);
         setLoading(false);
       });
-  }, [choose]);
+  }, [name]);
 
   const LoadingStarred = useCallback(() => {
     api
@@ -65,7 +67,7 @@ export const UserProvider = ({ children }) => {
         console.log(err);
         setLoading(false);
       });
-  }, [choose]);
+  }, [name]);
 
   return (
     <UserContext.Provider

@@ -3,7 +3,7 @@ import useUser from "../../providers/infoUser";
 import RepoItem from "../reposItem";
 
 const Repos = () => {
-  const { loadRepos, choose, repos, starred } = useUser();
+  const { choose, repos, starred } = useUser();
   return (
     <Grid
       w="100%"
@@ -12,13 +12,9 @@ const Repos = () => {
       p="4"
       mt="4"
     >
-      {loadRepos ? (
-        <h2>loading...</h2>
-      ) : (
-        (choose === "repos" ? repos : starred).map((repo) => (
-          <RepoItem key={repo.id} repo={repo} />
-        ))
-      )}
+      {(choose === "repos" ? repos : starred).map((repo) => (
+        <RepoItem key={repo.id} repo={repo} />
+      ))}
     </Grid>
   );
 };
