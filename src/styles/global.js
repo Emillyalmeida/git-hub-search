@@ -13,6 +13,9 @@ export default createGlobalStyle`
 :root{
     --color-background: #252422;
     --color-text:#fffcf2;
+    --orange : #eb5e28;
+    --gray-medium: #403d39;
+    --gray-ligth: #ccc5b9;
 }
 html{
     overflow: unset;
