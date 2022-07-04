@@ -29,11 +29,12 @@ export const UserProvider = ({ children }) => {
       .then((res) => {
         console.log(res.data);
         setUser(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [name]);
 
   const LoadingReposouStars = useCallback(() => {
     setLoading(true);
