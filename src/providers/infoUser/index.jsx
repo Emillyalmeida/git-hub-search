@@ -18,7 +18,8 @@ export const UserProvider = ({ children }) => {
   const [name, setName] = useState("emillyalmeida");
   const [choose, setChoose] = useState("repos");
   const [User, setUser] = useState({});
-  const [info, setInfo] = useState({});
+  const [repos, setRepos] = useState([]);
+  const [starred, setStarred] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -29,6 +30,8 @@ export const UserProvider = ({ children }) => {
       .then((res) => {
         console.log(res.data);
         setUser(res.data);
+        LoadingRepos();
+        LoadingStarred();
         setLoading(false);
       })
       .catch((err) => {
@@ -36,14 +39,27 @@ export const UserProvider = ({ children }) => {
       });
   }, [name]);
 
-  const LoadingReposouStars = useCallback(() => {
-    setLoading(true);
+  const LoadingRepos = useCallback(() => {
     api
-      .get(`/${name}/${choose}`)
+      .get(`/${name}/repos`)
       .then((res) => {
         console.log(res.data);
-        setInfo(res.data);
+        setRepos(res.data);
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
         setLoading(false);
+      });
+  }, [choose]);
+
+  const LoadingStarred = useCallback(() => {
+    api
+      .get(`/${name}/starred`)
+      .then((res) => {
+        console.log(res.data);
+        setStarred(res.data);
+        return;
       })
       .catch((err) => {
         console.log(err);
@@ -59,8 +75,9 @@ export const UserProvider = ({ children }) => {
         setChoose,
         loading,
         LoadingUser,
-        LoadingReposouStars,
-        info,
+        repos,
+        starred,
+        choose,
       }}
     >
       {children}
