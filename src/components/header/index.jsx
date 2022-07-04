@@ -11,7 +11,7 @@ const Header = () => {
       p="8"
     >
       <BsGithub fontSize="3rem" />
-      <Heading ml="1rem" fontSize="4xl">
+      <Heading ml="1rem" fontSize={["3xl", "4xl"]}>
         GitHub Seach
       </Heading>
     </Flex>
